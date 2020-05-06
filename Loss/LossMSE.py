@@ -1,0 +1,4 @@
+
+class LossMSE(object):
+
+
