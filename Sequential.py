@@ -1,28 +1,25 @@
 class Sequential ( object ) :
     
-    self.layers = []
-    self.loss = None
-    
-    def __init__(loss, *layers):
-        self.loss = loss
+    def __init__(self, * layers):
         self.layers = layers
         
     
     def forward ( self , * input_ ) :
-        x = input_
-        for l in layers:
+        x = input_[0]
+        
+        for l in self.layers:
             x = l.forward(x)
             
-        return x
+        self.output = x
+        return self.output
 
 
     def backward ( self , * gradwrtoutput ) :
         
-        gradwrouput = loss.backward()
-        
-        for l in layers[:-1:-1]:
+        gradwrtoutputTensor = gradwrtoutput[0]
+        for l in self.layers[::-1]:
             
-            gradwrouput = l.backward(gradwroutput)
+            gradwrtoutputTensor = l.backward(gradwrtoutputTensor)
 
     def param ( self ):
         return []
