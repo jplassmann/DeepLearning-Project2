@@ -1,15 +1,15 @@
 import torch
-
+    
+    
 class Linear ( object ) :
     
     
-    def __init__(self, nb_input, nb_output, activation):
+    def __init__(self, nb_input, nb_output):
         
         self.nb_input = nb_input
         self.nb_output = nb_output
-        self.activation = activation
     
-        self.eta = 0.01
+        self.eta = 0.001
         self.params = torch.normal(0, 1, (self.nb_output, self.nb_input))
         self.b = torch.normal(0, 1, (1, self.nb_output))
         
@@ -20,25 +20,22 @@ class Linear ( object ) :
         
         self.input = input_[0]
         self.s = torch.mm(self.params,self.input.t()).t() + self.b
-        self.output = self.activation.forward(self.s)
-        return self.output
+        return self.s
     
     
     
     
-    def backward ( self , * gradwrtoutput ) :
+    def backward ( self , * gradwrts ) :
         
-        gradwrtoutputTensor = gradwrtoutput[0].t()
+        gradwrtsTensor = gradwrts[0]
         
-        gradwrs = torch.mul(gradwrtoutputTensor, self.activation.backward(self.s))
 
-        gradwrparams = torch.mm(gradwrs.t() , self.input)
-        print(self.eta*gradwrparams)
+        gradwrparams = torch.mm(gradwrtsTensor.t() , self.input)/len(self.input)
         
         self.params -= self.eta*gradwrparams
-        self.b -= self.eta * gradwrs
+        self.b -= self.eta * gradwrtsTensor.sum(0)/len(self.input)
         
-        gradwrtxl = torch.mm(self.params.t(), gradwrs.t())
+        gradwrtxl = torch.mm(gradwrtsTensor, self.params)
         
         return gradwrtxl
 
