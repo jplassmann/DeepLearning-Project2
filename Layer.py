@@ -9,7 +9,7 @@ class Linear ( object ) :
         self.nb_input = nb_input
         self.nb_output = nb_output
     
-        self.eta = 0.001
+        self.eta = 0.0001
         self.params = torch.normal(0, 1, (self.nb_output, self.nb_input))
         self.b = torch.normal(0, 1, (1, self.nb_output))
         
@@ -28,7 +28,6 @@ class Linear ( object ) :
     def backward ( self , * gradwrts ) :
         
         gradwrtsTensor = gradwrts[0]
-        
 
         gradwrparams = torch.mm(gradwrtsTensor.t() , self.input)/len(self.input)
         

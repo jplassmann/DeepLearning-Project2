@@ -16,3 +16,4 @@ class ReLU(object):
         self.s[self.s >= 0] = 1
         
         return torch.mul(gradwrtoutput,self.s) 
+    
