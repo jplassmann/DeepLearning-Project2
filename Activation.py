@@ -17,3 +17,15 @@ class ReLU(object):
         
         return torch.mul(gradwrtoutput,self.s) 
     
+class Tanh(object):
+
+    def forward(self, x):
+    
+        self.s = x
+        return torch.tanh(self.s)
+    
+
+    def backward(self, gradwrtoutput):
+        
+        return torch.mul(gradwrtoutput, 1./(torch.cosh(self.s)**2))
+    
