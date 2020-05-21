@@ -3,7 +3,7 @@ import parameter
 
 class SGD(object):
 
-    def __init__(self, parameters, lr=0.01):
+    def __init__(self, parameters, lr=0.005):
         self.parameters = parameters
         self.lr = lr
 
@@ -15,9 +15,3 @@ class SGD(object):
     def step(self):
         for param in self.parameters:
             param.value -= self.lr * param.grad
-
-p = parameter.Parameter((1,2,3))
-
-s = SGD(p)
-
-p.zero_grad()

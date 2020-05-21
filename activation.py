@@ -17,6 +17,7 @@ class ReLU(nnmodule.NNModule):
 
         return torch.mul(gradwrtoutput,self.s)
 
+
 class Tanh(nnmodule.NNModule):
 
     def forward(self, x):
