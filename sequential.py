@@ -3,8 +3,8 @@ class Sequential (object) :
     def __init__(self, *layers):
         self.layers = layers
 
-    def forward(self , *input_) :
 
+    def forward(self , *input_) :
         x = input_[0]
 
         for l in self.layers:
@@ -15,7 +15,6 @@ class Sequential (object) :
 
 
     def backward(self, *gradwrtoutput) :
-
 
         gradwrtoutputTensor = gradwrtoutput[0]
         for l in self.layers[::-1]:

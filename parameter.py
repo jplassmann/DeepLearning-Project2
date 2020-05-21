@@ -5,6 +5,9 @@ class Parameter(object):
     def __init__(self, size):
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> b5a787b4618340bb03d5ef9efd504ff08192613f
         self.value = torch.zeros(size)
         self.grad = torch.zeros(size)
 
@@ -16,6 +19,7 @@ class Parameter(object):
 
     def add_grad(self, grad):
         self.grad += grad
+<<<<<<< HEAD
 =======
         self.parameter = torch.zeros(size)
 =======
@@ -35,3 +39,5 @@ class Parameter(object):
     def add_grad(self, grad):
         self.grad += grad
 >>>>>>> Optimiser works
+=======
+>>>>>>> b5a787b4618340bb03d5ef9efd504ff08192613f

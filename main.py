@@ -6,8 +6,11 @@ import sequential
 import loss
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> Optimiser works
+=======
+>>>>>>> b5a787b4618340bb03d5ef9efd504ff08192613f
 import math
 import optimiser
 
@@ -22,10 +25,13 @@ def test_accuracy(model, test_input, test_target):
     goodValue[output == test_target] = 1
     return goodValue.sum()/len(goodValue)
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> Changerd names and added optimiser and parameters
 =======
 >>>>>>> Optimiser works
+=======
+>>>>>>> b5a787b4618340bb03d5ef9efd504ff08192613f
 
 if __name__=="__main__":
 
@@ -35,6 +41,9 @@ if __name__=="__main__":
                 activation.ReLU(),
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> b5a787b4618340bb03d5ef9efd504ff08192613f
                 layer.Linear(25, 50),
                 activation.ReLU(),
                 layer.Linear(50, 50),
@@ -81,6 +90,7 @@ if __name__=="__main__":
             test_accuracyV = test_accuracy(model, test_input, test_target)
 
             print(loss.forward(output, train_target), test_accuracyV, test_accuracy(model, train_input, train_target))
+<<<<<<< HEAD
 =======
                 layer.Linear(25, 25),
 =======
@@ -137,3 +147,5 @@ if __name__=="__main__":
 
             print(loss.forward(output, train_target), test_accuracyV, test_accuracy(model, train_input, train_target))
 >>>>>>> Optimiser works
+=======
+>>>>>>> b5a787b4618340bb03d5ef9efd504ff08192613f
