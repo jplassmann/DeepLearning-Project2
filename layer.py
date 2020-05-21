@@ -24,9 +24,9 @@ class Linear(nnmodule.NNModule):
         #     -1 / math.sqrt(self.nb_input), 1/math.sqrt(self.nb_input))
         self.b = parameter.Parameter((1, nb_output))
         self.b.set_value(torch.empty(1, nb_output).uniform_(
-            -1 / math.sqrt(self.nb_input), 1/math.sqrt(self.nb_input)))
+            -1/math.sqrt(self.nb_input), 1/math.sqrt(self.nb_input)))
 
-    def forward(self, *input_ ) :
+    def forward(self, *input_) :
 
         self.input = input_[0]
         self.s = torch.mm(self.params.value, self.input.t()).t() + self.b.value

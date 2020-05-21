@@ -24,25 +24,33 @@ if __name__=="__main__":
     model = sequential.Sequential(
                 layer.Linear(2, 25),
                 activation.ReLU(),
-                layer.Linear(25, 25),
+                layer.Linear(25, 50),
                 activation.ReLU(),
-                layer.Linear(25, 25),
+                layer.Linear(50, 50),
                 activation.ReLU(),
-                layer.Linear(25, 1)
+                layer.Linear(50, 25),
+                activation.ReLU(),
+                layer.Linear(25, 1),
+                activation.Tanh()
             )
 
 
     train_input = torch.rand((1000,2))
     train_target = torch.rand((1000,1))
-    train_target[((train_input-0.5)**2).sum(1) < 1/(2*np.pi)] = -1
-    train_target[((train_input-0.5)**2).sum(1) >= 1/(2*np.pi)] = 1
+    train_target[((train_input-0.5)**2).sum(1) < 1/(2*math.pi)] = -1
+    train_target[((train_input-0.5)**2).sum(1) >= 1/(2*math.pi)] = 1
 
     test_input = torch.rand((1000,2))
     test_target = torch.rand((1000,1))
-    test_target[((test_input-0.5)**2).sum(1) < 1/(2*np.pi)] = -1
-    test_target[((test_input-0.5)**2).sum(1) >= 1/(2*np.pi)] = 1
+    test_target[((test_input-0.5)**2).sum(1) < 1/(2*math.pi)] = -1
+    test_target[((test_input-0.5)**2).sum(1) >= 1/(2*math.pi)] = 1
 
-    epochs = 4000
+    #Normalization
+    mu, std = train_input.mean(0), train_input.std(0)
+    train_input.sub_(mu).div_(std)
+    test_input.sub_(mu).div_(std)
+
+    epochs = 10000
     ps = model.parameters()
     optim = optimiser.SGD(model.parameters())
     for i in range(epochs):
