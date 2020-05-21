@@ -4,10 +4,14 @@ import parameter
 class SGD(object):
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     def __init__(self, parameters, lr=0.005):
 =======
     def __init__(self, parameters, lr=0.01):
 >>>>>>> Changerd names and added optimiser and parameters
+=======
+    def __init__(self, parameters, lr=0.005):
+>>>>>>> Optimisatino debug
         self.parameters = parameters
         self.lr = lr
 
@@ -21,6 +25,7 @@ class SGD(object):
     def step(self):
         for param in self.parameters:
             param.value -= self.lr * param.grad
+<<<<<<< HEAD
 =======
 
     def step():
@@ -36,3 +41,5 @@ s = SGD(p)
 
 p.zero_grad()
 >>>>>>> Changerd names and added optimiser and parameters
+=======
+>>>>>>> Optimisatino debug
