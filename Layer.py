@@ -1,5 +1,5 @@
 import torch
-    
+import math
     
 class Linear ( object ) :
     
@@ -10,9 +10,11 @@ class Linear ( object ) :
         self.nb_output = nb_output
     
         self.eta = 0.01
-        self.params = torch.normal(0, 1, (self.nb_output, self.nb_input))
-        self.b = torch.normal(0, 1, (1, self.nb_output))
+        #self.params = torch.normal(0, 1, (self.nb_output, self.nb_input))
+        self.params = torch.empty(self.nb_output, self.nb_input).uniform_(-1/math.sqrt(self.nb_input), 1/math.sqrt(self.nb_input))
         
+        #self.b = torch.normal(0, 1, (1, self.nb_output))
+        self.b = torch.empty(1, self.nb_output).uniform_(-1/math.sqrt(self.nb_input), 1/math.sqrt(self.nb_input))
         
     
     def forward ( self , * input_ ) :
