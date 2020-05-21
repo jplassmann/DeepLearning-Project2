@@ -4,6 +4,7 @@ import activation
 import layer
 import sequential
 import loss
+<<<<<<< HEAD
 import math
 import optimiser
 
@@ -17,6 +18,8 @@ def test_accuracy(model, test_input, test_target):
     goodValue = torch.full((len(output), 1), 0)
     goodValue[output == test_target] = 1
     return goodValue.sum()/len(goodValue)
+=======
+>>>>>>> Changerd names and added optimiser and parameters
 
 if __name__=="__main__":
 
@@ -24,6 +27,7 @@ if __name__=="__main__":
     model = sequential.Sequential(
                 layer.Linear(2, 25),
                 activation.ReLU(),
+<<<<<<< HEAD
                 layer.Linear(25, 50),
                 activation.ReLU(),
                 layer.Linear(50, 50),
@@ -70,3 +74,13 @@ if __name__=="__main__":
             test_accuracyV = test_accuracy(model, test_input, test_target)
 
             print(loss.forward(output, train_target), test_accuracyV, test_accuracy(model, train_input, train_target))
+=======
+                layer.Linear(25, 25),
+                activation.ReLU(),
+                layer.Linear(25, 25),
+                activation.ReLU(),
+                layer.Linear(25, 1)
+            )
+    for p in model.parameters():
+        print(p.size())
+>>>>>>> Changerd names and added optimiser and parameters
