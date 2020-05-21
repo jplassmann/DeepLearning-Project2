@@ -34,7 +34,7 @@ class Sigmoid(object):
     def forward(self, x):
     
         self.s = x
-        return 1. / self.s.exp().add(1)
+        return 1. / self.s.mul(-1).exp().add(1)
     
 
     def backward(self, gradwrtoutput):
