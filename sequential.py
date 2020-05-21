@@ -14,7 +14,7 @@ class Sequential (object) :
         return self.output
 
 
-    def backward (self, *gradwrtoutput) :
+    def backward(self, *gradwrtoutput) :
 
 
         gradwrtoutputTensor = gradwrtoutput[0]

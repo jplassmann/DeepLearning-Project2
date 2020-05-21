@@ -17,14 +17,18 @@ class SGD(object):
             param.zero_grad()
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     def step(self):
         for param in self.parameters:
             param.value -= self.lr * param.grad
 =======
 
     def step():
+=======
+    def step(self):
+>>>>>>> Optimiser works
         for param in self.parameters:
-            param -= self.lr * param.grad
+            param.value -= self.lr * param.grad
 
 p = parameter.Parameter((1,2,3))
 
