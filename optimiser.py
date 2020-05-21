@@ -12,10 +12,9 @@ class SGD(object):
         for param in self.parameters:
             param.zero_grad()
 
-
-    def step():
+    def step(self):
         for param in self.parameters:
-            param -= self.lr * param.grad
+            param.value -= self.lr * param.grad
 
 p = parameter.Parameter((1,2,3))
 
