@@ -9,7 +9,7 @@ class Linear ( object ) :
         self.nb_input = nb_input
         self.nb_output = nb_output
     
-        self.eta = 0.00004
+        self.eta = 0.01
         self.params = torch.normal(0, 1, (self.nb_output, self.nb_input))
         self.b = torch.normal(0, 1, (1, self.nb_output))
         
