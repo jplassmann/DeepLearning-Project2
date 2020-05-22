@@ -30,7 +30,7 @@ The activation function can be created in the following way: ReLU(), Tanh(), Sig
 <li>Binary Cross Entropy: BCELoss()</li>
 </ul>
 
-Losses class has two functions: 
+Loss classes have two functions: 
 <ul>
 <li>forward(output, target) which computes the loss of the model.</li>
 <li>backward(output, target) which computes the gradient of the loss with respect to the output of the model.</li>
