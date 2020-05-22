@@ -1,6 +1,14 @@
-# DeepLearning - Project #1 - Mini Deep Learning Library
+# DeepLearning - Project #2 - Mini Deep Learning Library
+
+## Libraries used: 
+
+<ul>
+<li>Pytorch</li>
+<li>Matplotlib</li>
+</ul>
 
 ## File Description
+
 <ul>
 <li>activation.py: contains classes of activation functions implemented</li>
 <li>layer.py: contains classes defining the layers</li>
@@ -53,3 +61,8 @@ It can be created in the following way: SGD(model.parameters()).
 <li>zero_grad() set to zero the gradient of the parameters of the models</li>
 <li>step() function updates the paramaters according to the gradient holded in the Parameter object.</li>
 </ul>
+
+## Execution
+
+To run the program how it is intended you need to execute test.py.
+You will first be asked to choose between two models. Just make your choice by inputing a 0 or 1 and pressing ENTER. You can also just input the ENTER key every time you're asked a choice to choose the default value. You will be then be asked how many epochs you want to train over. In the end, it will also ask you if you want to plot the results.
