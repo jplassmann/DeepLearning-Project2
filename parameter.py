@@ -1,6 +1,5 @@
 """Class used to define parameters in a layer of the neural network."""
 
-
 import torch
 
 

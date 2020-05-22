@@ -1,6 +1,5 @@
 """File containing the optimisers defines for the project"""
 
-
 import parameter
 import torch
 
@@ -13,9 +12,10 @@ class SGD(object):
 
         Args:
             parameters: List containing the parameters that should be updated
-                by the optimizer
-            lr: Learning rate of the gradient descent rule
-        """
+                        by the optimizer
+            lr:         Learning rate of the gradient descent rule
+            decay:      Decay rate of the learning rate
+        """    
         self.parameters = parameters
         self.lr = lr
         self.decay = decay
@@ -28,13 +28,12 @@ class SGD(object):
         """
         for param in self.parameters:
             param.zero_grad()
-
+     
     def step(self):
         """Updates the parameters using a gradient descent rule.
 
         Should be called after backpropagating the gradients. The learning rate
         decreases each time step is called."""
-        # Compute the learning rate for this step
         eta = self.lr/(1+self.step_cnt/self.decay)
         if eta < 0.001:
             eta = 0.001
