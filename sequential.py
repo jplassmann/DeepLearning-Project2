@@ -3,6 +3,8 @@ class Sequential (object) :
     def __init__(self, *layers):
         self.layers = layers
 
+    def __call__(self, input_):
+        return self.forward(input_)
 
     def forward(self , *input_) :
         x = input_[0]
