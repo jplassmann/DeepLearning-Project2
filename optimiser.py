@@ -8,7 +8,7 @@ import torch
 class SGD(object):
     """Optimizer that uses stochastic gradient descent as update rule."""
 
-    def __init__(self, parameters, lr=0.01):
+    def __init__(self, parameters, lr=0.015, decay=1000):
         """Initializer.
 
         Args:
@@ -18,6 +18,8 @@ class SGD(object):
         """
         self.parameters = parameters
         self.lr = lr
+        self.decay = decay
+        self.step_cnt = 0
 
     def zero_grad(self):
         """Sets the gradients of all parameters to 0.
@@ -30,6 +32,12 @@ class SGD(object):
     def step(self):
         """Updates the parameters using a gradient descent rule.
 
-        Should be called after backpropagating the gradients."""
+        Should be called after backpropagating the gradients. The learning rate
+        decreases each time step is called."""
+        # Compute the learning rate for this step
+        eta = self.lr/(1+self.step_cnt/self.decay)
+        if eta < 0.001:
+            eta = 0.001
         for param in self.parameters:
-            param.value -= self.lr * param.grad
+            param.value -= eta * param.grad
+        self.step_cnt += 1
