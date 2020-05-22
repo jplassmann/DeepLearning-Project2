@@ -6,7 +6,7 @@ import layer
 import sequential
 import loss
 import math
-import optimiser
+import optimizer
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
 plt.rcParams['pdf.fonttype'] = 42
@@ -77,7 +77,7 @@ if __name__=="__main__":
         test_target[((test_input-0.5)**2).sum(1) < 1/(2*math.pi)] = 0
         test_target[((test_input-0.5)**2).sum(1) >= 1/(2*math.pi)] = 1
         ps = model.parameters()
-        optim = optimiser.SGD(model.parameters(), lr=0.05, decay=500)
+        optim = optimizer.SGD(model.parameters(), lr=0.05, decay=500)
         #for plotting later
         levels = [0, 0.25, 0.5, 0.75, 1]
         #for accuracy computation
@@ -104,7 +104,7 @@ if __name__=="__main__":
         test_target[((test_input-0.5)**2).sum(1) < 1/(2*math.pi)] = -1
         test_target[((test_input-0.5)**2).sum(1) >= 1/(2*math.pi)] = 1
         ps = model.parameters()
-        optim = optimiser.SGD(model.parameters())
+        optim = optimizer.SGD(model.parameters())
         #for plotting later
         levels = [-1, -0.5, 0, 0.5, 1]
         #for accuracy computation

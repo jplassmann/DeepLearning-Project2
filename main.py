@@ -4,7 +4,7 @@ import layer
 import sequential
 import loss
 import math
-import optimiser
+import optimizer
 
 
 def test_accuracy(model, test_input, test_target):
@@ -52,7 +52,7 @@ if __name__=="__main__":
 
     epochs = 10000
     ps = model.parameters()
-    optim = optimiser.SGD(model.parameters())
+    optim = optimizer.SGD(model.parameters())
     for i in range(epochs):
 
         output = model(train_input)

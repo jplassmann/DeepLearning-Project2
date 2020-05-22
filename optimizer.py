@@ -1,4 +1,4 @@
-"""File containing the optimisers defines for the project"""
+"""File containing the optimizers defines for the project"""
 
 import parameter
 import torch
