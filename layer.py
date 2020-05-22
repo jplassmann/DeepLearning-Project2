@@ -19,8 +19,6 @@ class Linear(nnmodule.NNModule):
         self.nb_input = nb_input
         self.nb_output = nb_output
 
-        self.eta = 0.01
-        
         self.params = parameter.Parameter((nb_output, nb_input))
         self.params.set_value(torch.empty(nb_output, nb_input).uniform_(
             -1/math.sqrt(self.nb_input), 1/math.sqrt(self.nb_input)))
