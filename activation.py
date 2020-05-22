@@ -30,12 +30,13 @@ class Tanh(nnmodule.NNModule):
 
         return torch.mul(gradwrtoutput, 1./(torch.cosh(self.s)**2))
 
-class Sigmoid(object):
+class Sigmoid(nnmodule.NNModule):
 
     def forward(self, x):
 
         self.s = x
-        return 1. / self.s.mul(-1).exp().add(1)
+        self.s = 1. / self.s.mul(-1).exp().add(1)
+        return self.s
 
 
     def backward(self, gradwrtoutput):

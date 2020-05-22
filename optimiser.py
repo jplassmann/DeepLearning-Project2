@@ -3,7 +3,7 @@ import parameter
 
 class SGD(object):
 
-    def __init__(self, parameters, lr=0.005):
+    def __init__(self, parameters, lr=0.1):
         self.parameters = parameters
         self.lr = lr
 

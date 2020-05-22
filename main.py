@@ -12,8 +12,8 @@ def test_accuracy(model, test_input, test_target):
 
     output = model.forward(test_input)
 
-    output[output >= 0] = 1
-    output[output < 0] = -1
+    output[output >= 0.5] = 1
+    output[output < 0.5] = 0
     goodValue = torch.full((len(output), 1), 0)
     goodValue[output == test_target] = 1
     return goodValue.sum()/len(goodValue)
@@ -31,18 +31,19 @@ if __name__=="__main__":
                 layer.Linear(50, 25),
                 activation.ReLU(),
                 layer.Linear(25, 1),
-                activation.Tanh()
+                #activation.Tanh()
+                activation.Sigmoid()
             )
 
 
     train_input = torch.rand((1000,2))
     train_target = torch.rand((1000,1))
-    train_target[((train_input-0.5)**2).sum(1) < 1/(2*math.pi)] = -1
+    train_target[((train_input-0.5)**2).sum(1) < 1/(2*math.pi)] = 0
     train_target[((train_input-0.5)**2).sum(1) >= 1/(2*math.pi)] = 1
 
     test_input = torch.rand((1000,2))
     test_target = torch.rand((1000,1))
-    test_target[((test_input-0.5)**2).sum(1) < 1/(2*math.pi)] = -1
+    test_target[((test_input-0.5)**2).sum(1) < 1/(2*math.pi)] = 0
     test_target[((test_input-0.5)**2).sum(1) >= 1/(2*math.pi)] = 1
 
     #Normalization
