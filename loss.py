@@ -1,3 +1,5 @@
+import torch
+
 class LossMSE(object):
 
     def forward(self, x, y):
@@ -9,8 +11,9 @@ class LossMSE(object):
 
 class LossBCE(object):
 
+    reg = 1e-15
     def forward(self, x, y):
-        return - y * x.log() - ( 1 - y ) * torch.log(1-x)
+        return torch.sum(-y * torch.log(x.clamp(min=LossBCE.reg)) - (1 - y) * torch.log((1 - x).clamp(min=LossBCE.reg)))/len(x)
 
     def backward(self, x, y):
-        return - y / x + ( 1 - y ) / (1 - x )
+        return - y / x.clamp(min=LossBCE.reg) + (1 - y) / (1 - x).clamp(min=LossBCE.reg)

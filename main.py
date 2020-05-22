@@ -20,7 +20,8 @@ def test_accuracy(model, test_input, test_target):
 
 if __name__=="__main__":
 
-    loss = loss.LossMSE()
+    criterion = loss.LossBCE()
+    # criterion = loss.LossMSE()
     model = sequential.Sequential(
                 layer.Linear(2, 25),
                 activation.ReLU(),
@@ -60,7 +61,9 @@ if __name__=="__main__":
 
         optim.zero_grad()
         #print(ps[0].grad[0])
-        gradwrrtxL = loss.backward(output, train_target)
+        gradwrrtxL = criterion.backward(output, train_target)
+        if torch.isnan(gradwrrtxL).byte().any():
+            import pdb;pdb.set_trace()
         #print(ps[0].grad[0])
         model.backward(gradwrrtxL)
         #print(ps[0].grad[0])
@@ -68,6 +71,7 @@ if __name__=="__main__":
         #print(ps[0].grad[0])
 
         if i % 10 == 0:
+            # import pdb;pdb.set_trace()
             test_accuracyV = test_accuracy(model, test_input, test_target)
 
-            print(loss.forward(output, train_target), test_accuracyV, test_accuracy(model, train_input, train_target))
+            print(criterion.forward(output, train_target), test_accuracyV, test_accuracy(model, train_input, train_target))

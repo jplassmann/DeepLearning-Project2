@@ -3,10 +3,9 @@ import parameter
 
 class SGD(object):
 
-    def __init__(self, parameters, lr=0.1):
+    def __init__(self, parameters, lr=0.01):
         self.parameters = parameters
         self.lr = lr
-
 
     def zero_grad(self):
         for param in self.parameters:
