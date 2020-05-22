@@ -9,13 +9,13 @@ class Linear(nnmodule.NNModule):
     """ Class defining the linear layer"""
 
     def __init__(self, nb_input, nb_output):
-        """ Initialize a linear layer 
-        
+        """ Initialize a linear layer
+
             Args:
                 nb_input:  length of the input
                 nb_output: length of the output
         """
-        
+
         self.nb_input = nb_input
         self.nb_output = nb_output
 
@@ -34,41 +34,39 @@ class Linear(nnmodule.NNModule):
         self.b.set_value(torch.empty(1, nb_output).uniform_(
             -1/math.sqrt(self.nb_input), 1/math.sqrt(self.nb_input)))
 
-    def forward(self, *input_) :
-        """ Compute the forward pass of the linear layer 
-        
-            Args: 
+    def forward(self, input) :
+        """ Compute the forward pass of the linear layer
+
+            Args:
                 input_: tuple with the input tensor in the first position
-                
+
             Returns: output of the layer
         """
-        
-        self.input = input_[0]
+
+        self.input = input
         self.s = torch.mm(self.params.value, self.input.t()).t() + self.b.value
         return self.s
 
-    def backward(self, *gradwrts) :
+    def backward(self, gradwrts) :
         """ Compute the backward pass of the linear layer. In this function,
             the gradient with respect to the weights are added to the Parameter.
-        
+
             Args:
                 gradwrts: tuple with the gradient with respect to s in first position
-                
+
             Returns: gradient with respect to the output of the layer
         """
-        
-        gradwrtsTensor = gradwrts[0]
 
-        gradwrparams = torch.mm(gradwrtsTensor.t() , self.input) / len(self.input)
+        gradwrparams = torch.mm(gradwrts.t() , self.input) / len(self.input)
 
         self.params.add_grad(gradwrparams)
-        self.b.add_grad(gradwrtsTensor.sum(0) / len(self.input))
+        self.b.add_grad(gradwrts.sum(0) / len(self.input))
 
-        gradwrtxl = torch.mm(gradwrtsTensor, self.params.value)
+        gradwrtxl = torch.mm(gradwrts, self.params.value)
 
         return gradwrtxl
 
     def parameters(self):
         """ Returns: weights and biases of the layer."""
-        
+
         return [self.params, self.b]
