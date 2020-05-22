@@ -34,8 +34,7 @@ class Sigmoid(nnmodule.NNModule):
 
     def forward(self, x):
 
-        self.s = x
-        self.s = 1. / self.s.mul(-1).exp().add(1)
+        self.s = 1. / x.mul(-1).exp().add(1)
         return self.s
 
 
